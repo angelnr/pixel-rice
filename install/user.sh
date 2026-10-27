@@ -40,7 +40,9 @@ cp -n "$REPO/assets/terminal_image.png" "$HOME/Imágenes/" 2>/dev/null || true
 echo "== sustituyendo @HOME@"
 find "$HOME/.config" "$HOME/.local/share" "$HOME/.local/bin" -type f -print0 2>/dev/null |
     xargs -0 -r grep -Il '@HOME@' 2>/dev/null |
-    xargs -0 -r sed -i "s|@HOME@|$HOME|g"
+    while IFS= read -r file; do
+        sed -i "s|@HOME@|$HOME|g" "$file"
+    done
 
 # Compatibilidad Debian: fdfind/batcat -> fd/bat
 [ -x /usr/bin/fdfind ] && [ ! -e "$HOME/.local/bin/fd" ] && ln -sf /usr/bin/fdfind "$HOME/.local/bin/fd" || true
