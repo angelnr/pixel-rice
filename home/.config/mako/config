@@ -1,0 +1,27 @@
+# ~/.config/mako/config
+# HUD cyberpunk pixel-art: panel oscuro, cian y magenta, sin icono.
+
+font=Spleen 8x16
+border-size=4
+border-radius=0
+padding=12
+margin=10
+outer-margin=12
+width=420
+height=260
+default-timeout=6000
+ignore-timeout=1
+max-visible=4
+max-icon-size=36
+icon-border-radius=0
+icons=0
+group-by=app-name,summary
+text-alignment=left
+anchor=top-right
+layer=overlay
+
+# Cabecera de sistema + título grande + cuerpo + línea de señal.
+format=<span foreground="#5cc8d7" weight="bold">▚ SYS.NOTIFY</span> <span foreground="#d75c9a" size="small">// %a</span>\n<span foreground="#e6f7fa" size="x-large" weight="bold">%s</span>\n<span foreground="#a9c2c9">%b</span>\n<span foreground="#d75c9a">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+
+# Colores del HUD
+include=~/.config/mako/mako-colors

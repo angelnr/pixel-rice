@@ -1,0 +1,16 @@
+[Unit]
+Description=Pixel dock (favorite apps)
+PartOf=graphical-session.target
+After=graphical-session.target
+Requisite=graphical-session.target
+
+[Service]
+Environment=GDK_BACKEND=wayland
+ExecStart=%h/.local/bin/pixel-dock.py
+Restart=on-failure
+RestartSec=1
+# Los apps lanzados desde el dock no deben morir si reiniciamos el dock.
+KillMode=process
+
+[Install]
+WantedBy=graphical-session.target

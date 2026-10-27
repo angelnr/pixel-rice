@@ -1,0 +1,153 @@
+/* ~/.config/waybar/style.css
+   HUD pixel art. Paleta fija:
+   cian  = foco / acento principal
+   lila  = secundario / música
+   ámbar = alertas / estados especiales
+   Spleen es la única tipografía (texto y títulos). */
+
+@define-color hud_bg #0e1418;
+@define-color hud_panel #142126;
+@define-color hud_line #223138;
+@define-color hud_text #dfe7e8;
+@define-color hud_muted #8a9ba3;
+@define-color hud_cyan #5cc8d7;
+@define-color hud_lilac #b48ead;
+@define-color hud_amber #e0af68;
+@define-color hud_red #e06c75;
+
+* {
+    font-family: "Spleen 6x12";
+    font-size: 12px;
+    min-height: 0;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+}
+
+window#waybar {
+    background: @hud_bg;
+    color: @hud_text;
+    border-bottom: 2px solid @hud_cyan;
+}
+
+window#waybar.hidden {
+    opacity: 0;
+}
+
+#custom-hud {
+    color: @hud_cyan;
+    background: @hud_panel;
+    border-right: 2px solid @hud_cyan;
+    padding: 0 10px;
+    font-family: "Spleen 8x16";
+    font-size: 16px;
+}
+
+#workspaces button {
+    padding: 0 8px;
+    background: transparent;
+    color: @hud_muted;
+    border-left: 2px solid @hud_line;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+#workspaces button.empty {
+    color: #56666e;
+}
+
+#workspaces button.active {
+    background: #15262b;
+    color: @hud_cyan;
+}
+
+#workspaces button.focused {
+    background: @hud_cyan;
+    color: @hud_bg;
+}
+
+#workspaces button.urgent {
+    background: @hud_amber;
+    color: @hud_bg;
+}
+
+/* Pequeña barra de color por nivel, incluso cuando no está enfocado. */
+#workspaces button#niri-workspace-HOME  { box-shadow: inset 0 -2px @hud_cyan; }
+#workspaces button#niri-workspace-DEV   { box-shadow: inset 0 -2px @hud_lilac; }
+#workspaces button#niri-workspace-MUSIC { box-shadow: inset 0 -2px @hud_amber; }
+#workspaces button#niri-workspace-GAME  { box-shadow: inset 0 -2px @hud_red; }
+
+#custom-clock {
+    font-family: "Spleen 8x16";
+    font-size: 16px;
+    color: @hud_cyan;
+    background: @hud_panel;
+    border-left: 2px solid @hud_line;
+    border-right: 2px solid @hud_line;
+    padding: 0 14px;
+}
+
+#custom-music,
+#custom-cava,
+#pulseaudio,
+#backlight,
+#battery,
+#network,
+#custom-tailscale,
+#bluetooth,
+#power-profiles-daemon,
+#idle_inhibitor,
+#custom-sys,
+#custom-dnd,
+#custom-nightlight,
+#custom-palette,
+#custom-game,
+#tray {
+    padding: 0 9px;
+    background: transparent;
+    border-left: 2px solid @hud_line;
+}
+
+#custom-music   { color: @hud_lilac; }
+#custom-music.paused { color: @hud_muted; }
+#custom-cava    { color: @hud_cyan; }
+#pulseaudio     { color: @hud_text; }
+#backlight      { color: @hud_text; }
+#battery        { color: @hud_text; }
+#network        { color: @hud_cyan; }
+#custom-tailscale { color: @hud_cyan; }
+#custom-tailscale.off { color: @hud_amber; }
+#bluetooth      { color: @hud_lilac; }
+#bluetooth.off,
+#bluetooth.disabled { color: @hud_muted; }
+#bluetooth.connected { color: @hud_cyan; }
+#power-profiles-daemon { color: @hud_amber; }
+#idle_inhibitor { color: @hud_muted; }
+#idle_inhibitor.activated { color: @hud_amber; }
+#custom-sys    { color: @hud_muted; }
+#custom-dnd     { color: @hud_muted; }
+#custom-dnd.dnd { color: @hud_amber; }
+#custom-nightlight      { color: @hud_muted; }
+#custom-nightlight.on   { color: @hud_amber; }
+#custom-palette         { color: @hud_lilac; }
+#custom-game    { color: @hud_amber; }
+#tray           { color: @hud_text; }
+
+#pulseaudio.muted { color: @hud_amber; }
+
+#battery.warning  { color: @hud_amber; }
+#battery.critical { color: @hud_red; }
+#network.disconnected { color: @hud_amber; }
+
+tooltip {
+    background: @hud_bg;
+    border: 2px solid @hud_cyan;
+    border-radius: 0;
+}
+
+tooltip label {
+    color: @hud_text;
+    font-family: "Spleen 6x12";
+    font-size: 12px;
+}

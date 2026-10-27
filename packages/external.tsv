@@ -1,0 +1,10 @@
+# componente	version	origen
+niri	26.04	/usr/local/bin/niri (compilado/instalado aparte)
+yazi	26.9.1	https://github.com/sxyazi/yazi/releases/tag/v26.9.1
+matugen	4.2.0	https://github.com/InioX/matugen/releases/tag/v4.2.0
+jfsh	0.2.1	https://github.com/hacel/jfsh/releases/tag/v0.2.1
+blesh	0.4.0-devel3	https://github.com/akinomyoga/ble.sh/releases/tag/v0.4.0-devel3
+mako	1.11.0 + parche	https://github.com/emersion/mako/releases/tag/v1.11.0
+ouch	0.8.3	https://github.com/ouch-org/ouch/releases/tag/0.8.3
+pandoc	3.1.11	https://github.com/jgm/pandoc/releases/tag/3.1.11
+xwayland-satellite	actual	https://github.com/Supreeeme/xwayland-satellite (Steam/Discord X11)

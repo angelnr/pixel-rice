@@ -1,0 +1,15 @@
+{
+  "items": [
+    { "name": "Launcher", "icon": "__launcher__", "exec": "fuzzel" },
+    { "name": "Brave", "icon": "brave-browser", "exec": "brave-browser" },
+    { "name": "Kitty", "icon": "kitty", "exec": "kitty" },
+    { "name": "Dolphin", "icon": "org.kde.dolphin", "exec": "dolphin" },
+    { "name": "Kate", "icon": "kate", "exec": "kate" },
+    { "name": "Steam", "icon": "steam", "exec": "@HOME@/.local/bin/steam-launch.sh" },
+    { "name": "CAVA", "icon": "multimedia-audio-player", "exec": "@HOME@/.local/bin/cava-toggle.sh" },
+    { "name": "Finamp", "icon": "@HOME@/.config/rice/finamp.png", "exec": "@HOME@/.local/bin/finamp-launch.sh" },
+    { "name": "SYS", "icon": "utilities-system-monitor", "exec": "@HOME@/.local/bin/sysmon.sh" },
+    { "name": "Settings", "icon": "preferences-system", "exec": "systemsettings" },
+    { "name": "Power", "icon": "system-shutdown", "exec": "@HOME@/.local/bin/power-menu.sh" }
+  ]
+}

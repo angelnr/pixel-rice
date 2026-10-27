@@ -1,0 +1,20 @@
+[general]
+framerate = 60
+bars = 0
+sensitivity = 100
+
+[input]
+method = pipewire
+source = auto
+
+[output]
+method = noncurses
+
+[color]
+background = 'default'
+foreground = '#5cc8d7'
+gradient = 1
+gradient_color_1 = '#2f7f8c'
+gradient_color_2 = '#5cc8d7'
+gradient_color_3 = '#b48ead'
+gradient_color_4 = '#e0af68'

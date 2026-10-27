@@ -1,0 +1,194 @@
+// ~/.config/waybar/config.jsonc
+// HUD pixel art: corazones, niveles con nombre, reloj central, música, CAVA,
+// audio, brillo, batería, Wi-Fi y sistema. Paleta fija cian / lila / ámbar.
+{
+  "layer": "top",
+  "position": "top",
+  "height": 30,
+  "spacing": 6,
+
+  "modules-left": ["custom/hud", "niri/workspaces", "custom/music"],
+  "modules-center": ["custom/clock"],
+  "modules-right": [
+    "custom/cava",
+    "pulseaudio",
+    "backlight",
+    "battery",
+    "network",
+    "custom/tailscale",
+    "bluetooth",
+    "power-profiles-daemon",
+    "idle_inhibitor",
+    "custom/sys",
+    "custom/dnd",
+    "custom/nightlight",
+    "custom/palette",
+    "custom/game",
+    "tray"
+  ],
+
+  "custom/hud": {
+    "format": "♥ //",
+    "tooltip": false
+  },
+
+  "niri/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "1": "⌂ HOME",
+      "2": "◆ DEV",
+      "3": "♪ MUSIC",
+      "4": "▶ GAME",
+      "HOME": "⌂ HOME",
+      "DEV": "◆ DEV",
+      "MUSIC": "♪ MUSIC",
+      "GAME": "▶ GAME",
+      "default": "·"
+    }
+  },
+
+  "custom/clock": {
+    "exec": "@HOME@/.local/bin/hud-clock.sh",
+    "interval": 1,
+    "on-click": "@HOME@/.local/bin/cal-popup.sh"
+  },
+
+  "custom/music": {
+    "exec": "@HOME@/.local/bin/media-status.sh",
+    "interval": 2,
+    "return-type": "json",
+    "hide-empty-text": true,
+    "max-length": 32,
+    "on-click": "playerctl play-pause",
+    "on-click-right": "playerctl next",
+    "on-scroll-up": "playerctl previous",
+    "on-scroll-down": "playerctl next"
+  },
+
+  "custom/cava": {
+    "format": "// CAVA",
+    "tooltip": "CAVA // clic: abrir/cerrar visualizador\nClic derecho: ir a MUSIC",
+    "on-click": "@HOME@/.local/bin/cava-toggle.sh",
+    "on-click-right": "niri msg action focus-workspace MUSIC"
+  },
+
+  "pulseaudio": {
+    "format": "// VOL {volume}%",
+    "format-muted": "// VOL MUTE",
+    "on-click": "@HOME@/.local/bin/volume.sh slider",
+    "on-click-right": "@HOME@/.local/bin/volume.sh mute",
+    "on-scroll-up": "@HOME@/.local/bin/volume.sh up",
+    "on-scroll-down": "@HOME@/.local/bin/volume.sh down",
+    "tooltip-format": "Volumen: {volume}%\nScroll: ±5% · Clic: selector · Clic der: mute"
+  },
+
+  "backlight": {
+    "format": "// BRI {percent}%",
+    "on-scroll-up": "@HOME@/.local/bin/brightness.sh up",
+    "on-scroll-down": "@HOME@/.local/bin/brightness.sh down",
+    "on-click": "@HOME@/.local/bin/brightness.sh slider",
+    "tooltip-format": "Brillo: {percent}%\nScroll: ±5% · Clic: selector"
+  },
+
+  "battery": {
+    "format": "// BAT {capacity}%",
+    "format-charging": "// BAT {capacity}% +",
+    "format-plugged": "// BAT {capacity}% AC",
+    "states": { "warning": 20, "critical": 10 },
+    "tooltip-format": "Batería: {capacity}% ({time})"
+  },
+
+  "network": {
+    "format-wifi": "// WIFI",
+    "format-ethernet": "// LAN",
+    "format-disconnected": "// OFF",
+    "tooltip-format-wifi": "Wi-Fi: {essid}\nSeñal: {signalStrength}%\nIP: {ipaddr}",
+    "tooltip-format-ethernet": "Ethernet\nIP: {ipaddr}",
+    "tooltip-format-disconnected": "Sin conexión",
+    "on-click": "nm-connection-editor"
+  },
+
+  "custom/tailscale": {
+    "exec": "@HOME@/.local/bin/ts-status.sh",
+    "interval": 10,
+    "return-type": "json",
+    "on-click": "@HOME@/.local/bin/tailscale-menu.sh"
+  },
+
+  "bluetooth": {
+    "format": "// BT",
+    "format-disabled": "// BT OFF",
+    "format-off": "// BT OFF",
+    "format-on": "// BT",
+    "format-connected": "// BT {num_connections}",
+    "tooltip-format": "{controller_alias} // {controller_address}",
+    "tooltip-format-connected": "{controller_alias}\n{num_connections} conectado(s)\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias} // {device_address}",
+    "on-click": "@HOME@/.local/bin/bluetooth-menu.sh"
+  },
+
+  "power-profiles-daemon": {
+    "format": "// PWR {icon}",
+    "format-icons": {
+      "performance": "▲",
+      "balanced": "◆",
+      "power-saver": "▼"
+    },
+    "tooltip-format": "Perfil de energía: {profile}\nDriver: {driver}\nClic: siguiente perfil"
+  },
+
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "// AFK ON",
+      "deactivated": "// AFK"
+    },
+    "tooltip-format-activated": "Inhibición activa: pantalla y bloqueo desactivados",
+    "tooltip-format-deactivated": "Inhibición desactivada (clic para activar)",
+    "start-activated": false
+  },
+
+  "custom/sys": {
+    "exec": "@HOME@/.local/bin/sys-status.sh",
+    "interval": 3,
+    "return-type": "json",
+    "on-click": "@HOME@/.local/bin/sysmon.sh"
+  },
+
+  "custom/dnd": {
+    "exec": "@HOME@/.local/bin/dnd-status.sh",
+    "interval": 5,
+    "return-type": "json",
+    "on-click": "@HOME@/.local/bin/dnd-toggle.sh",
+    "tooltip": true
+  },
+
+  "custom/nightlight": {
+    "exec": "@HOME@/.local/bin/nightlight-status.sh",
+    "interval": 5,
+    "return-type": "json",
+    "on-click": "@HOME@/.local/bin/nightlight-toggle.sh",
+    "tooltip": true
+  },
+
+  "custom/palette": {
+    "exec": "@HOME@/.local/bin/palette-status.sh",
+    "interval": 10,
+    "return-type": "json",
+    "on-click": "@HOME@/.local/bin/palette-menu.sh",
+    "tooltip": true
+  },
+
+  "custom/game": {
+    "exec": "@HOME@/.local/bin/game-mode-status.sh",
+    "interval": 3,
+    "return-type": "json",
+    "hide-empty-text": true,
+    "on-click": "@HOME@/.local/bin/game-mode.sh"
+  },
+
+  "tray": {
+    "icon-size": 14,
+    "spacing": 6
+  }
+}

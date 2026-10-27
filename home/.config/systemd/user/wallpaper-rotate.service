@@ -1,0 +1,8 @@
+[Unit]
+Description=Rotate level wallpapers randomly (crossfade daemon)
+After=graphical-session.target
+Requisite=graphical-session.target
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/wallpaperctl.sh rotate-all

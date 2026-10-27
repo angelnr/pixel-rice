@@ -1,0 +1,3 @@
+#!/bin/sh
+# Wrapper local de mpv Flatpak para clientes de terminal (jfsh, etc.).
+exec flatpak run io.mpv.Mpv "$@"

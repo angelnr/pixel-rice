@@ -1,0 +1,75 @@
+# Base de compilación y utilidades
+build-essential
+git
+curl
+wget
+unzip
+tar
+xz-utils
+jq
+meson
+ninja-build
+pkg-config
+libcairo2-dev
+libpango1.0-dev
+libglib2.0-dev
+libgdk-pixbuf-2.0-dev
+libwayland-dev
+wayland-protocols
+libsystemd-dev
+
+# Wayland, escritorio y HUD
+waybar
+fuzzel
+kitty
+mako-notifier
+swayidle
+swaylock
+brightnessctl
+playerctl
+wl-clipboard
+grim
+slurp
+imagemagick
+poppler-utils
+cava
+wlsunset
+libgtk-layer-shell0
+python3
+python3-gi
+gir1.2-gtk-3.0
+fonts-spleen
+fonts-noto-color-emoji
+xdg-desktop-portal
+xdg-desktop-portal-gtk
+
+# Audio, red y Bluetooth
+pipewire
+pipewire-pulse
+wireplumber
+pulseaudio-utils
+network-manager
+network-manager-applet
+bluez
+
+# Terminal y búsqueda
+fzf
+zoxide
+fd-find
+ripgrep
+bat
+neofetch
+
+# Utilidades de notificaciones y consola
+libnotify-bin
+flatpak
+
+# Previews de Yazi y documentos
+ffmpeg
+ffmpegthumbnailer
+docx2txt
+pandoc
+
+# Comprobación y diagnóstico
+smartmontools
+lm-sensors

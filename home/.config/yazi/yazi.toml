@@ -1,0 +1,53 @@
+[mgr]
+ratio          = [1, 4, 3]
+show_hidden    = true
+show_symlink   = true
+linemode       = "size"
+scrolloff      = 5
+
+[preview]
+wrap         = "no"
+tab_size     = 2
+max_width    = 1200
+max_height   = 1200
+image_filter = "nearest"
+image_quality = 90
+
+# Editores y visores locales: nada de xdg-open/Photopea para imagen o PDF.
+[opener]
+edit = [
+    { run = "nano %s", desc = "nano", for = "unix", block = true },
+]
+image = [
+    { run = "gwenview %s1", desc = "Gwenview", for = "linux", orphan = true },
+]
+pdf = [
+    { run = "okular %s1", desc = "Okular", for = "linux", orphan = true },
+]
+play = [
+    { run = "@HOME@/.local/libexec/mpv %s1", desc = "mpv (Flatpak)", for = "unix", orphan = true },
+]
+open = [
+    { run = "xdg-open %s1", desc = "Open", for = "linux", orphan = true },
+]
+extract = [
+    { run = "ya pub extract --list %s", desc = "Extract here" },
+]
+
+[open]
+rules = [
+    { mime = "text/*", use = "edit" },
+    { mime = "application/{json,ndjson,javascript,wine-extension-ini}", use = "edit" },
+    { mime = "inode/empty", use = "edit" },
+    { mime = "image/*", use = "image" },
+    { mime = "application/pdf", use = "pdf" },
+    { mime = "{audio,video}/*", use = "play" },
+    { mime = "folder/*", use = "open" },
+    { url = "*", use = "open" },
+]
+
+[plugin]
+prepend_previewers = [
+    { mime = "application/vnd.openxmlformats-officedocument.*", run = "docx-preview" },
+    { url = "*.docx", run = "docx-preview" },
+]

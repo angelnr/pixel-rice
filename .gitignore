@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+*.bak
+*.bak-*
+rice-backup-*
+.cache/
+home/.config/waybar/colors.css
+home/.config/waybar/wall-colors.css
+home/.config/systemd/user/*.wants/
+home/.config/rice/level-wallpapers.json

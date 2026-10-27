@@ -1,0 +1,14 @@
+{
+  "GAME": [
+    "@HOME@/.local/bin/steam-launch.sh",
+    "@HOME@/.local/bin/discord-launch.sh",
+    "brave-browser --new-window https://www.youtube.com"
+  ],
+  "DEV": [
+    "code --new-window",
+    "kitty --title DEV-SHELL"
+  ],
+  "MUSIC": [
+    "@HOME@/.local/bin/finamp-launch.sh"
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "current": "cyber",
+  "palettes": {
+    "cyber": {
+      "label": "CYBER",
+      "accent": "#5cc8d7",
+      "accent2": "#d75c9a",
+      "accent_dark": "#2f8f9d",
+      "amber": "#e0af68",
+      "red": "#e06c75",
+      "lilac": "#b48ead"
+    },
+    "magenta": {
+      "label": "MAGENTA",
+      "accent": "#ff79c6",
+      "accent2": "#5cc8d7",
+      "accent_dark": "#a34f82",
+      "amber": "#e0af68",
+      "red": "#e06c75",
+      "lilac": "#b48ead"
+    },
+    "amber": {
+      "label": "AMBER",
+      "accent": "#ffcc66",
+      "accent2": "#d75c9a",
+      "accent_dark": "#a67c3f",
+      "amber": "#e0af68",
+      "red": "#e06c75",
+      "lilac": "#b48ead"
+    },
+    "matrix": {
+      "label": "MATRIX",
+      "accent": "#6fcf97",
+      "accent2": "#5cc8d7",
+      "accent_dark": "#3f7a5f",
+      "amber": "#e0af68",
+      "red": "#e06c75",
+      "lilac": "#b48ead"
+    },
+    "ice": {
+      "label": "ICE",
+      "accent": "#6fd6e8",
+      "accent2": "#d75c9a",
+      "accent_dark": "#3f7f8a",
+      "amber": "#e0af68",
+      "red": "#e06c75",
+      "lilac": "#b48ead"
+    }
+  }
+}

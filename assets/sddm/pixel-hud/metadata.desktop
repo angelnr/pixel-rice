@@ -1,0 +1,17 @@
+[SddmGreeterTheme]
+Name=Pixel HUD
+Name[es]=Pixel HUD
+Description=Pixel art HUD login theme
+Author=angel
+Copyright=(c) 2026, angel
+License=GPL 3+
+Type=sddm-theme
+Version=0.1
+Website=
+Screenshot=preview.png
+MainScript=Main.qml
+ConfigFile=theme.conf
+TranslationsDirectory=translations
+Theme-Id=pixel-hud
+Theme-API=2.0
+QtVersion=6

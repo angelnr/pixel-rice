@@ -1,0 +1,4 @@
+com.valvesoftware.Steam
+com.discordapp.Discord
+com.unicornsonlsd.finamp
+io.mpv.Mpv

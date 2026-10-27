@@ -1,0 +1,237 @@
+diff --git a/dbus/xdg.c b/dbus/xdg.c
+index 1f91431..68bbc5d 100644
+--- a/dbus/xdg.c
++++ b/dbus/xdg.c
+@@ -81,13 +81,70 @@ static int handle_get_capabilities(sd_bus_message *msg, void *data,
+ 	return 0;
+ }
+ 
++#define FADE_OUT_MS 2000
++#define FADE_STEP_MS 16
++#define SLIDE_STEP_MS 16
++#define SLIDE_STEP_PX 16
++
++static void handle_notification_slide(void *data) {
++	struct mako_notification *notif = data;
++	struct mako_surface *surface = notif->surface;
++	notif->slide_timer = NULL;
++
++	if (notif->slide_offset <= SLIDE_STEP_PX) {
++		notif->slide_offset = 0;
++		if (surface != NULL) {
++			set_dirty(surface);
++		}
++		return;
++	}
++
++	notif->slide_offset -= SLIDE_STEP_PX;
++	if (surface != NULL) {
++		set_dirty(surface);
++	}
++	notif->slide_timer = add_event_loop_timer(&notif->state->event_loop,
++		SLIDE_STEP_MS, handle_notification_slide, notif);
++}
++
++static void handle_notification_fade(void *data) {
++	struct mako_notification *notif = data;
++	struct mako_surface *surface = notif->surface;
++	notif->fade_timer = NULL;
++
++	notif->fade_elapsed_ms += FADE_STEP_MS;
++	if (notif->fade_elapsed_ms >= FADE_OUT_MS) {
++		notif->opacity = 0.0;
++		close_notification(notif, MAKO_NOTIFICATION_CLOSE_EXPIRED, true);
++		if (surface != NULL) {
++			set_dirty(surface);
++		}
++		return;
++	}
++
++	notif->opacity = 1.0 -
++		(double)notif->fade_elapsed_ms / (double)FADE_OUT_MS;
++	if (surface != NULL) {
++		set_dirty(surface);
++	}
++	notif->fade_timer = add_event_loop_timer(&notif->state->event_loop,
++		FADE_STEP_MS, handle_notification_fade, notif);
++}
++
+ static void handle_notification_timer(void *data) {
+ 	struct mako_notification *notif = data;
+ 	struct mako_surface *surface = notif->surface;
+ 	notif->timer = NULL;
+ 
+-	close_notification(notif, MAKO_NOTIFICATION_CLOSE_EXPIRED, true);
+-	set_dirty(surface);
++	if (surface == NULL) {
++		close_notification(notif, MAKO_NOTIFICATION_CLOSE_EXPIRED, true);
++		return;
++	}
++
++	notif->fade_elapsed_ms = 0;
++	notif->opacity = 1.0;
++	notif->fade_timer = add_event_loop_timer(&notif->state->event_loop,
++		FADE_STEP_MS, handle_notification_fade, notif);
+ }
+ 
+ static int handle_notify(sd_bus_message *msg, void *data,
+@@ -427,6 +484,10 @@ static int handle_notify(sd_bus_message *msg, void *data,
+ 	group_notifications(state, notif_criteria);
+ 	destroy_criteria(notif_criteria);
+ 
++	notif->slide_offset = MAKO_SLIDE_DISTANCE;
++	notif->slide_timer = add_event_loop_timer(&state->event_loop,
++		SLIDE_STEP_MS, handle_notification_slide, notif);
++
+ 	notification_execute_binding(notif, &notif->style.notify_binding, NULL);
+ 
+ 	set_dirty(notif->surface);
+diff --git a/include/notification.h b/include/notification.h
+index 48c96f7..cbc57f5 100644
+--- a/include/notification.h
++++ b/include/notification.h
+@@ -8,6 +8,10 @@
+ #include "config.h"
+ #include "types.h"
+ 
++// Entrada desde arriba: colchón transparente y distancia recorrida.
++#define MAKO_SLIDE_PAD 320
++#define MAKO_SLIDE_DISTANCE 300
++
+ struct mako_state;
+ struct mako_surface;
+ struct mako_timer;
+@@ -48,6 +52,13 @@ struct mako_notification {
+ 
+ 	struct mako_hotspot hotspot;
+ 	struct mako_timer *timer;
++
++	// Animaciones locales: fade-out al expirar y slide-in desde arriba.
++	struct mako_timer *fade_timer;
++	uint32_t fade_elapsed_ms;
++	double opacity;
++	struct mako_timer *slide_timer;
++	int32_t slide_offset;
+ };
+ 
+ struct mako_action {
+diff --git a/notification.c b/notification.c
+index b556c1d..bd8d5de 100644
+--- a/notification.c
++++ b/notification.c
+@@ -41,6 +41,13 @@ void reset_notification(struct mako_notification *notif) {
+ 
+ 	destroy_timer(notif->timer);
+ 	notif->timer = NULL;
++	destroy_timer(notif->fade_timer);
++	notif->fade_timer = NULL;
++	notif->fade_elapsed_ms = 0;
++	notif->opacity = 1.0;
++	destroy_timer(notif->slide_timer);
++	notif->slide_timer = NULL;
++	notif->slide_offset = 0;
+ 
+ 	free(notif->app_name);
+ 	free(notif->app_icon);
+@@ -130,6 +137,10 @@ void close_notification(struct mako_notification *notif,
+ 
+ 	destroy_timer(notif->timer);
+ 	notif->timer = NULL;
++	destroy_timer(notif->fade_timer);
++	notif->fade_timer = NULL;
++	destroy_timer(notif->slide_timer);
++	notif->slide_timer = NULL;
+ 
+ 	if (add_to_history) {
+ 		notif->surface = NULL;
+diff --git a/render.c b/render.c
+index 8fed6d8..5f4e927 100644
+--- a/render.c
++++ b/render.c
+@@ -98,7 +98,7 @@ static void set_font_options(cairo_t *cairo, struct mako_surface *surface) {
+ 
+ static int render_notification(cairo_t *cairo, struct mako_state *state, struct mako_surface *surface,
+ 		struct mako_style *style, const char *text, struct mako_icon *icon, int offset_y, int scale,
+-		struct mako_hotspot *hotspot, int progress) {
++		struct mako_hotspot *hotspot, int progress, double opacity) {
+ 	int border_size = 2 * style->border_size;
+ 	int padding_height = style->padding.top + style->padding.bottom;
+ 	int padding_width = style->padding.left + style->padding.right;
+@@ -110,6 +110,8 @@ static int render_notification(cairo_t *cairo, struct mako_state *state, struct
+ 	bool icon_vertical = style->icon_location == MAKO_ICON_LOCATION_TOP ||
+ 		style->icon_location == MAKO_ICON_LOCATION_BOTTOM;
+ 
++	cairo_push_group(cairo);
++
+ 	// If the compositor has forced us to shrink down, do so.
+ 	int notif_width =
+ 		(style->width <= surface->width) ? style->width : surface->width;
+@@ -334,6 +336,9 @@ static int render_notification(cairo_t *cairo, struct mako_state *state, struct
+ 
+ 	g_object_unref(layout);
+ 
++	cairo_pop_group_to_source(cairo);
++	cairo_paint_with_alpha(cairo, opacity);
++
+ 	return notif_height;
+ }
+ 
+@@ -357,9 +362,10 @@ void render(struct mako_surface *surface, struct pool_buffer *buffer, int scale,
+ 
+ 	size_t visible_count = 0;
+ 	size_t hidden_count = 0;
+-	int total_height = 0;
++	int total_height = MAKO_SLIDE_PAD;
+ 	int max_width = 0;
+ 	int pending_bottom_margin = 0;
++	bool rendered_any = false;
+ 	struct mako_notification *notif;
+ 	size_t total_notifications = 0;
+ 	wl_list_for_each(notif, &state->notifications, link) {
+@@ -417,8 +423,10 @@ void render(struct mako_surface *surface, struct pool_buffer *buffer, int scale,
+ 
+ 		struct mako_icon *icon = (style->icons) ? notif->icon : NULL;
+ 		int notif_height = render_notification(
+-			cairo, state, surface, style, text, icon, total_height, scale,
+-			&notif->hotspot, notif->progress);
++			cairo, state, surface, style, text, icon,
++			total_height - notif->slide_offset, scale,
++			&notif->hotspot, notif->progress, notif->opacity);
++		rendered_any = true;
+ 		free(text);
+ 
+ 		int notif_width =
+@@ -470,7 +478,8 @@ void render(struct mako_surface *surface, struct pool_buffer *buffer, int scale,
+ 			format_text(style->format, text, format_hidden_text, &data);
+ 
+ 			int hidden_height = render_notification(
+-				cairo, state, surface, style, text, NULL, total_height, scale, NULL, 0);
++				cairo, state, surface, style, text, NULL, total_height, scale, NULL, 0, 1.0);
++			rendered_any = true;
+ 			free(text);
+ 
+ 			total_height += hidden_height;
+@@ -480,5 +489,5 @@ void render(struct mako_surface *surface, struct pool_buffer *buffer, int scale,
+ 	}
+ 
+ 	*rendered_width = max_width;
+-	*rendered_height = total_height;
++	*rendered_height = rendered_any ? total_height : 0;
+ }
+diff --git a/wayland.c b/wayland.c
+index 6dd9185..6c7fc25 100644
+--- a/wayland.c
++++ b/wayland.c
+@@ -680,8 +680,10 @@ static void send_frame(struct mako_surface *surface) {
+ 		zwlr_layer_surface_v1_set_size(surface->layer_surface, width, height);
+ 		zwlr_layer_surface_v1_set_anchor(surface->layer_surface, surface->anchor);
+ 		zwlr_layer_surface_v1_set_margin(surface->layer_surface,
+-			style->outer_margin.top, style->outer_margin.right,
+-			style->outer_margin.bottom, style->outer_margin.left);
++			style->outer_margin.top - MAKO_SLIDE_PAD,
++			style->outer_margin.right,
++			style->outer_margin.bottom,
++			style->outer_margin.left);
+ 		wl_surface_commit(surface->surface);
+ 
+ 		// Now we're going to bail without drawing anything. This gives the

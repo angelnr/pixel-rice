@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Nano
+GenericName=Text Editor
+Comment=Editar texto plano en Nano
+Exec=kitty --title NANO -- nano %F
+Icon=accessories-text-editor
+Terminal=false
+Categories=Utility;TextEditor;
+MimeType=text/plain;
+StartupNotify=true

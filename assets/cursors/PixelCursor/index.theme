@@ -1,0 +1,4 @@
+[Icon Theme]
+Name=PixelCursor
+Comment=Pixel art cursors
+Inherits=breeze_cursors

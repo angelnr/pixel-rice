@@ -1,0 +1,12 @@
+// Colores fijos del HUD pixel art (wall-colors.sh)
+layout {
+    focus-ring {
+        active-color "#5cc8d7"
+    }
+    tab-indicator {
+        active-color "#d75c9a"
+    }
+    insert-hint {
+        color "#5cc8d780"
+    }
+}

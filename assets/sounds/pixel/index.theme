@@ -1,0 +1,7 @@
+[Sound Theme]
+Name=Pixel HUD
+Comment=Chiptune UI sounds
+Directories=stereo
+
+[stereo]
+OutputProfile=stereo

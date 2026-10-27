@@ -1,0 +1,39 @@
+# ~/.config/matugen/config.toml
+# Cada cambio de wallpaper reescribe estos ficheros a partir de las
+# plantillas de ~/.config/matugen/templates/ .
+
+[config]
+# (obligatorio en matugen 4.x; vacío = valores por defecto)
+
+[templates.waybar]
+input_path = "~/.config/matugen/templates/waybar.css"
+output_path = "~/.config/waybar/colors.css"
+# (waybar se reinicia desde rice.sh, tras generar wall-colors.css)
+
+[templates.kitty]
+input_path = "~/.config/matugen/templates/kitty.conf"
+output_path = "~/.config/kitty/themes/Matugen.conf"
+post_hook = "pkill -SIGUSR1 kitty 2>/dev/null || true"
+
+[templates.fuzzel]
+input_path = "~/.config/matugen/templates/fuzzel.ini"
+output_path = "~/.config/fuzzel/colors.ini"
+
+[templates.niri]
+input_path = "~/.config/matugen/templates/niri.kdl"
+output_path = "~/.config/niri/colors.kdl"
+# niri vigila el include y recarga solo; el hook es un extra
+post_hook = "niri msg action load-config-file 2>/dev/null || true"
+
+[templates.mako]
+input_path = "~/.config/matugen/templates/mako"
+output_path = "~/.config/mako/mako-colors"
+post_hook = "makoctl reload 2>/dev/null || true"
+
+[templates.cava]
+input_path = "~/.config/matugen/templates/cava-full.ini"
+output_path = "~/.config/cava/config"
+
+[templates.swaylock]
+input_path = "~/.config/matugen/templates/swaylock"
+output_path = "~/.config/swaylock/config"

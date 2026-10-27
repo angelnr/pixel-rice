@@ -1,0 +1,77 @@
+[flavor]
+dark = ""
+
+[mgr]
+cwd = { fg = "#5cc8d7" }
+find_keyword = { fg = "#e0af68", bold = true, italic = true }
+find_position = { fg = "#b48ead", bold = true }
+symlink_target = { fg = "#8a9ba3", italic = true }
+marker_copied = { fg = "#7ec87e", bg = "#7ec87e" }
+marker_cut = { fg = "#e06c75", bg = "#e06c75" }
+marker_marked = { fg = "#5cc8d7", bg = "#5cc8d7" }
+marker_selected = { fg = "#e0af68", bg = "#e0af68" }
+marker_symbol = "│"
+border_symbol = "│"
+border_style = { fg = "#223138" }
+
+[tabs]
+active = { bg = "#5cc8d7", fg = "#0e1418", bold = true }
+inactive = { fg = "#5cc8d7", bg = "#142126" }
+sep_inner = { open = "", close = "" }
+sep_outer = { open = "", close = "" }
+
+[mode]
+normal_main = { bg = "#5cc8d7", fg = "#0e1418", bold = true }
+normal_alt = { fg = "#5cc8d7", bg = "#142126" }
+select_main = { bg = "#e0af68", fg = "#0e1418", bold = true }
+select_alt = { fg = "#e0af68", bg = "#142126" }
+unset_main = { bg = "#e06c75", fg = "#0e1418", bold = true }
+unset_alt = { fg = "#e06c75", bg = "#142126" }
+
+[indicator]
+parent = { reversed = true }
+current = { reversed = true }
+preview = { underline = true }
+
+[status]
+overall = { fg = "#dfe7e8" }
+perm_sep = { fg = "#223138" }
+perm_type = { fg = "#7ec87e" }
+perm_read = { fg = "#e0af68" }
+perm_write = { fg = "#e06c75" }
+perm_exec = { fg = "#5cc8d7" }
+progress_label = { bold = true }
+progress_normal = { fg = "#5cc8d7", bg = "#0e1418" }
+progress_error = { fg = "#e0af68", bg = "#e06c75" }
+
+[which]
+border = { fg = "#5cc8d7" }
+border_set = { as = "plain" }
+cols = 3
+cand = { fg = "#5cc8d7" }
+rest = { fg = "#8a9ba3" }
+desc = { fg = "#b48ead" }
+separator = "  "
+separator_style = { fg = "#223138" }
+
+[confirm]
+border = { fg = "#5cc8d7" }
+border_set = { as = "plain" }
+title = { fg = "#5cc8d7" }
+btn_yes = { reversed = true }
+btn_no = {}
+
+[spot]
+border = { fg = "#5cc8d7" }
+border_set = { as = "plain" }
+title = { fg = "#5cc8d7" }
+
+[notify]
+border_set = { as = "plain" }
+
+# Sin Nerd Font en Spleen: desactivamos iconos de archivo.
+[icon]
+globs = []
+dirs = []
+files = []
+conds = []

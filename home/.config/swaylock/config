@@ -1,0 +1,30 @@
+# ~/.config/matugen/templates/swaylock
+# Plantilla fija del HUD pixel art.
+# lock.sh pasa la imagen pixel art generada con -i.
+
+color=0b1014
+inside-color=0e1418ee
+inside-clear-color=0e1418dd
+inside-ver-color=0e1418dd
+inside-wrong-color=0e1418dd
+text-color=dfe7e8
+text-clear-color=dfe7e8
+text-ver-color=5cc8d7
+text-wrong-color=e0af68
+text-caps-lock-color=e0af68
+line-color=5cc8d7
+line-clear-color=5cc8d7
+line-ver-color=5cc8d7
+line-wrong-color=e0af68
+ring-color=5cc8d7
+ring-clear-color=5cc8d7
+ring-ver-color=5cc8d7
+ring-wrong-color=e0af68
+key-hl-color=e0af68
+bs-hl-color=b48ead
+separator-color=5cc8d7
+font=Spleen 8x16
+font-size=16
+indicator-radius=56
+indicator-thickness=6
+show-failed-attempts

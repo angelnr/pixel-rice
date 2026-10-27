@@ -1,0 +1,22 @@
+# ~/.config/mako/mako-colors
+# HUD cyberpunk pixel-art: panel oscuro, cian de red y magenta de alerta.
+
+background-color=#0a0f14f2
+text-color=#dfe7e8
+border-color=#5cc8d7
+progress-color=over #d75c9a
+
+# Urgencias: ámbar / rojo de alarma.
+[urgency=high]
+border-color=#e0af68
+
+[urgency=critical]
+border-color=#e06c75
+
+# No molestar.
+[mode=do-not-disturb]
+invisible=1
+on-notify=none
+
+[mode=silent]
+on-notify=none

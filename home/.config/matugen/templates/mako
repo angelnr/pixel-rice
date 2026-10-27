@@ -1,0 +1,22 @@
+# ~/.config/matugen/templates/mako
+# Plantilla fija del HUD pixel art.
+
+background-color=#0e1418f2
+text-color=#dfe7e8
+border-color=#5cc8d7
+progress-color=over #5cc8d7ff
+
+# Per-mode settings
+
+[mode=do-not-disturb]
+invisible=1
+on-notify=none
+
+[mode=silent]
+on-notify=none
+
+[urgency=high]
+border-color=#e0af68
+
+[urgency=critical]
+border-color=#e06c75
