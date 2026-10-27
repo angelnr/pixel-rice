@@ -1,5 +1,9 @@
 # pixel-rice
 
+<p align="center">
+  <b>Español</b> · <a href="README.en.md">English</a>
+</p>
+
 Rice personal de **Niri + Waybar + Mako + Yazi + Kitty** con estética pixel-art
 cyberpunk/HUD sobre **Debian 13 (trixie)**.
 
@@ -41,7 +45,7 @@ Las versiones exactas de los componentes externos están en
 ## Instalación rápida
 
 ```sh
-git clone https://github.com/TU_USUARIO/pixel-rice.git
+git clone https://github.com/angelnr/pixel-rice.git
 cd pixel-rice
 chmod +x bootstrap.sh build/mako.sh install/*.sh
 ./bootstrap.sh
@@ -131,7 +135,8 @@ pixel-rice/
 │   ├── HARDWARE.md
 │   ├── SECRETS.md
 │   └── ROADMAP.md
-└── README.md
+├── README.md
+└── README.en.md
 ```
 
 Los ficheros que contienen `@HOME@` son plantillas: `install/user.sh` los copia
