@@ -1,5 +1,9 @@
 # Secretos y datos que no deben publicarse
 
+<p align="center">
+  <b>Español</b> · <a href="en/SECRETS.md">English</a>
+</p>
+
 Antes de subir el repositorio, revisa que no se hayan colado:
 
 - `~/.ssh` (claves privadas, `known_hosts`, config con hosts internos).

@@ -134,7 +134,8 @@ pixel-rice/
 │   ├── NIRI.md
 │   ├── HARDWARE.md
 │   ├── SECRETS.md
-│   └── ROADMAP.md
+│   ├── ROADMAP.md
+│   └── en/             # traducciones al inglés
 ├── README.md
 └── README.en.md
 ```

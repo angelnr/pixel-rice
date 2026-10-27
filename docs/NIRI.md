@@ -1,5 +1,9 @@
 # Instalación de Niri 26.04
 
+<p align="center">
+  <b>Español</b> · <a href="en/NIRI.md">English</a>
+</p>
+
 El rice está probado con **Niri 26.04**. En el equipo original está instalado en
 `/usr/local/bin/niri`, no en `/usr/bin`, y no depende del paquete de Debian.
 

@@ -1,5 +1,9 @@
 # Hoja de ruta
 
+<p align="center">
+  <b>Español</b> · <a href="en/ROADMAP.md">English</a>
+</p>
+
 ## Hecho
 
 - [x] **3. Mako reproducible**: `build/mako.sh`, parche y servicio local.

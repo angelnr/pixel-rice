@@ -11,7 +11,7 @@ This repository contains the user configuration, custom scripts, SDDM theme and
 installers needed to rebuild the desktop on another Debian machine. It does not
 contain secrets, browser profiles, Jellyfin tokens or third-party binaries.
 
-> The detailed documentation under `docs/` is currently written in Spanish.
+> English documentation lives under `docs/en/`; the Spanish originals are under `docs/`.
 
 ## What it includes
 
@@ -62,14 +62,14 @@ chmod +x bootstrap.sh build/mako.sh install/*.sh
 
 There are mandatory manual steps afterwards: Tailscale, SSH, Jellyfin/Finamp,
 Brave profile and Steam/Discord login. They are documented in
-[`docs/POST-INSTALL.md`](docs/POST-INSTALL.md).
+[`docs/en/POST-INSTALL.md`](docs/en/POST-INSTALL.md).
 
 ## Manual install
 
 If you prefer to control every step:
 
 ```sh
-# 1. Niri 26.04: install it first, see docs/NIRI.md
+# 1. Niri 26.04: install it first, see docs/en/NIRI.md
 # 2. Packages and SDDM
 ./install/system.sh
 
@@ -134,7 +134,8 @@ pixel-rice/
 │   ├── NIRI.md
 │   ├── HARDWARE.md
 │   ├── SECRETS.md
-│   └── ROADMAP.md
+│   ├── ROADMAP.md
+│   └── en/             # English translations
 ├── README.md
 └── README.en.md
 ```
@@ -193,7 +194,7 @@ extracting archives from the terminal.
 - Downloaded third-party binaries and the original 78 MB wallpaper set.
 - The Tela-circle icon theme (45 MB); install it separately.
 
-Before publishing, read [`docs/SECRETS.md`](docs/SECRETS.md).
+Before publishing, read [`docs/en/SECRETS.md`](docs/en/SECRETS.md).
 
 ## Pinned versions
 

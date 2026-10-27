@@ -1,5 +1,9 @@
 # Hardware del equipo original
 
+<p align="center">
+  <b>Español</b> · <a href="en/HARDWARE.md">English</a>
+</p>
+
 Configuración de referencia donde se probó el rice:
 
 - **Equipo**: Lenovo IdeaPad 5 15IIL05.

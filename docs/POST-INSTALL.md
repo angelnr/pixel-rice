@@ -1,5 +1,9 @@
 # Post-instalación
 
+<p align="center">
+  <b>Español</b> · <a href="en/POST-INSTALL.md">English</a>
+</p>
+
 Después de `bootstrap.sh` hay cosas que **no** se pueden automatizar porque son
 estado de usuario, secretos o servicios externos.
 
