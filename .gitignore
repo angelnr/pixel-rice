@@ -83,9 +83,15 @@ core
 *.rej
 *~
 *.swp
+*.save
+*.swo
+*.swn
 *.swo
 *.swn
 .*.swp
+*.save
+*.swo
+*.swn
 .DS_Store
 Thumbs.db
 .idea/
