@@ -1,10 +1,146 @@
-__pycache__/
-*.pyc
-*.bak
-*.bak-*
-rice-backup-*
-.cache/
+# ---------------------------------------------------------------------------
+# pixel-rice .gitignore
+#
+# Criterio: publicar configuración, scripts, plantillas, documentación y
+# assets pequeños; NO publicar credenciales, estado de usuario, cachés,
+# backups locales, logs, sockets ni binarios de terceros.
+# ---------------------------------------------------------------------------
+
+# Secretos e identidad
+.ssh/
+**/.ssh/
+id_rsa*
+id_ed25519*
+id_ecdsa*
+known_hosts*
+*.pem
+*.key
+*.p12
+*.pfx
+*.token
+*.secret
+.netrc
+.git-credentials
+.env
+.env.*
+!.env.example
+secrets/
+**/secrets/
+**/.config/gh/
+**/.config/gcloud/
+**/.config/aws/
+**/.config/opencode/
+**/.config/jfsh/
+**/.local/state/jfsh/
+**/.local/share/keyrings/
+**/.local/share/flatpak/
+**/.local/state/
+**/.cache/
+**/Cache/
+**/Code Cache/
+**/GPUCache/
+**/Cookies
+**/Local Storage/
+**/Session Storage/
+**/IndexedDB/
+**/SingletonLock
+**/SingletonCookie
+**/SingletonSocket
+**/Preferences
+**/Secure Preferences
+
+# Navegadores, editores y apps con sesión/estado
+**/BraveSoftware/
+**/chromium/
+**/google-chrome/
+**/.config/Code/
+**/.config/opencode/
+**/.config/jfsh/
+**/.config/discord/
+**/.config/Element/
+**/.config/Signal/
+**/.config/TelegramDesktop/
+
+# Estado y runtime del rice
+home/.config/rice/level-wallpapers.json
 home/.config/waybar/colors.css
 home/.config/waybar/wall-colors.css
 home/.config/systemd/user/*.wants/
-home/.config/rice/level-wallpapers.json
+home/.config/systemd/user/*.wants/**
+*.pid
+*.sock
+*.socket
+*.log
+*.core
+core
+*.tmp
+*.temp
+
+# Backups, intercambio y temporales de editores
+*.bak
+*.bak-*
+*.orig
+*.rej
+*~
+*.swp
+*.swo
+*.swn
+.*.swp
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.code-workspace
+
+# Binarios, descargas y artefactos de build
+*.deb
+*.rpm
+*.AppImage
+*.snap
+*.tar
+*.tar.gz
+*.tgz
+*.tar.xz
+*.tar.zst
+*.zip
+*.xz
+*.zst
+*.7z
+*.iso
+*.img
+*.bin
+*.o
+*.a
+*.so
+*.so.*
+home/.local/lib/
+home/.local/libexec/*
+!home/.local/libexec/mpv
+home/.local/bin/*
+!home/.local/bin/*.sh
+!home/.local/bin/*.py
+!home/.local/bin/README*
+
+# Código/deps de terceros y entornos
+**/node_modules/
+**/target/
+**/.venv/
+**/venv/
+**/__pycache__/
+*.pyc
+*.pyo
+*.class
+*.jar
+
+# Assets que no deben engordar el repo (se instalan aparte)
+assets/wallpapers/full/
+assets/icons/Tela-circle/
+assets/icons/Tela-circle-dark/
+assets/icons/Tela-circle-light/
+assets/fonts/
+assets/*.tar.gz
+assets/*.zip
+
+# Backups del instalador
+rice-backup-*
+backups/
