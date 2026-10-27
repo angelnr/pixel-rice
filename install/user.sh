@@ -64,6 +64,7 @@ if [ ! -x "$HOME/.local/bin/mako" ]; then
         echo "AVISO: Mako no se pudo compilar. Instala las dependencias de build/mako.sh." >&2
     }
 fi
+systemctl --user restart mako >/dev/null 2>&1 || true
 
 echo
 echo "Configuración de usuario instalada."
